@@ -19,7 +19,7 @@ const SignUpPage = () => {
     e.preventDefault()
     const { status } = await todo.signUp(emailState.value, passwordState.value)
     if (status !== 201) return
-    navigate('/signIn')
+    navigate('/signin')
   }
 
   const disabled = !emailState.valid || !passwordState.valid
@@ -46,7 +46,7 @@ const SignUpPage = () => {
           onBlur={passwordBlurHandler}
           onChange={passwordChangeHandler}
         />
-        <Button data-testid="signip-button" disabled={disabled} type="submit">
+        <Button data-testid="signup-button" disabled={disabled} type="submit">
           Sign up for todo list
         </Button>
       </form>

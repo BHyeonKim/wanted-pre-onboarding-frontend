@@ -49,10 +49,10 @@ const SigninPage = () => {
           onBlur={passwordBlurHandler}
           onChange={passwordChangeHandler}
         />
-        <Button data-testid="signip-button" disabled={disabled} type="submit">
+        <Button data-testid="signin-button" disabled={disabled} type="submit">
           Sign in
         </Button>
-        <NavigationButton data-testid="signip-button" to={'/signUp'} type="button">
+        <NavigationButton data-testid="signup-button" to={'/signup'} type="button">
           Sign up
         </NavigationButton>
       </form>
