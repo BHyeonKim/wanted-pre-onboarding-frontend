@@ -2,20 +2,31 @@ import classNames from 'classnames/bind'
 import Button from 'components/Button'
 import Input from 'components/Input'
 import useInput from 'hooks/useInput'
+import { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+import todo from 'services/todo'
 
 import styles from './signUp.module.scss'
 
 const cx = classNames.bind(styles)
 
 const SignUpPage = () => {
+  const navigate = useNavigate()
   const [emailState, emailChangeHandler, emailBlurHandler] = useInput('email')
   const [passwordState, passwordChangeHandler, passwordBlurHandler] = useInput('password')
+
+  const handleSignUp = async (e: FormEvent) => {
+    e.preventDefault()
+    const { status } = await todo.signUp(emailState.value, passwordState.value)
+    if (status !== 201) return
+    navigate('/signIn')
+  }
 
   const disabled = !emailState.valid || !passwordState.valid
 
   return (
     <div className={cx('page')}>
-      <form>
+      <form onSubmit={handleSignUp}>
         <Input
           data-testid="email-input"
           inputFor="email"
