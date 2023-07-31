@@ -1,0 +1,20 @@
+@use 'styles/constants/colors' as color;
+
+.button {
+  display: block;
+  width: 280px;
+  height: 36px;
+  font-weight: 700;
+  color: color.$WHITE;
+  letter-spacing: 0.4px;
+  background-color: color.$BLUE6;
+  border-radius: 4px;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:disabled {
+    background-color: color.$GRAY6;
+  }
+}
