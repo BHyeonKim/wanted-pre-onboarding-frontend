@@ -25,6 +25,10 @@
       font-weight: 500;
       color: color.$BLUE5;
       letter-spacing: 0.6px;
+
+      &:disabled {
+        color: color.$GRAY5;
+      }
     }
   }
 }
