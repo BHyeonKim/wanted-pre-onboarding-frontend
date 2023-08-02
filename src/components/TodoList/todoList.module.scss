@@ -1,0 +1,5 @@
+.todoList {
+  & li + li {
+    margin-top: 10px;
+  }
+}

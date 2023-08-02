@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind'
+import Fetcher from 'components/Fetcher'
 import TodoInput from 'components/TodoInput'
-import TodoItem from 'components/TodoItem'
+import TodoList from 'components/TodoList'
 
 import styles from './todo.module.scss'
 
@@ -9,9 +10,9 @@ const cx = classNames.bind(styles)
 const TodoPage = () => {
   return (
     <div className={cx('page')}>
-      <ul>
-        <TodoItem />
-      </ul>
+      <Fetcher>
+        <TodoList />
+      </Fetcher>
       <TodoInput />
     </div>
   )
