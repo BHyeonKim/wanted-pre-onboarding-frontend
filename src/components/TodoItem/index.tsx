@@ -1,32 +1,39 @@
 import classNames from 'classnames/bind'
 import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'
-import { ChangeEvent, useState } from 'react'
+import { DataContext } from 'components/Context'
+import { ChangeEvent, PropsWithChildren, useContext, useState } from 'react'
+import todo from 'services/todo'
+import { TodoObject } from 'types/todo'
 
 import styles from './todoItem.module.scss'
 
-interface TodoItemProps {
-  todo?: string
-}
+type TodoItemProps = PropsWithChildren<TodoObject>
 
 type Mode = 'visual' | 'insert'
 
 const cx = classNames.bind(styles)
 
-const TodoItem = ({ todo = 'Nulla excepteur ullamco do csaf' }: TodoItemProps) => {
-  const [input, setInput] = useState(todo)
+const TodoItem = ({ ...todoProps }: TodoItemProps) => {
+  const [todoObject, setTodo] = useState(todoProps)
   const [mode, setMode] = useState<Mode>('visual')
+  const dataContextValue = useContext(DataContext)
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) =>
-    setInput(e.currentTarget.value)
+    setTodo((prev) => ({ ...prev, todo: e.currentTarget.value }))
+
+  const handleDelete = async () => {
+    await todo.deleteTodo(todoObject.id)
+    dataContextValue?.setDataState('stale')
+  }
 
   const handleMode = () => setMode((prev) => (prev === 'visual' ? 'insert' : 'visual'))
 
   const field =
     mode === 'visual' ? (
-      <p>{input}</p>
+      <p>{todoObject.todo}</p>
     ) : (
-      <input type="text" value={input} onChange={handleInput} />
+      <input type="text" value={todoObject.todo} onChange={handleInput} />
     )
 
   const buttonText = mode === 'insert' ? '완료' : '수정'
@@ -41,7 +48,9 @@ const TodoItem = ({ todo = 'Nulla excepteur ullamco do csaf' }: TodoItemProps) =
         <Button className={cx('button', 'modify')} onClick={handleMode}>
           {buttonText}
         </Button>
-        <Button className={cx('button', 'delete')}>삭제</Button>
+        <Button className={cx('button', 'delete')} onClick={handleDelete}>
+          삭제
+        </Button>
       </div>
     </li>
   )

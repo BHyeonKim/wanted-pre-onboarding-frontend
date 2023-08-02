@@ -29,6 +29,10 @@ const Fetcher = ({ children }: FetcherProps) => {
     dataContextValue?.setDataState('fresh')
   }, [dataContextValue, dataContextValue?.dataState, fetchTodos])
 
+  useEffect(() => {
+    fetchTodos()
+  }, [fetchTodos])
+
   return cloneElement(children, {
     todos: todoData,
   })
