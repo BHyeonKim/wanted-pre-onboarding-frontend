@@ -25,26 +25,27 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setTodo(e.currentTarget.value)
   }
+
   const handleDelete = async () => {
-    if (mode === 'insert') {
-      setMode('visual')
-      setTodo(todoItem.todo)
-      return
-    }
     await todoApi.deleteTodo(todoItem.id)
     dataContextValue?.setDataState('stale')
   }
 
-  const handleMode = async () => {
-    if (mode === 'insert') {
-      await todoApi.updateTodo(
-        todoItem.id,
-        todo,
-        checkboxRef.current?.checked ?? todoItem.isCompleted,
-      )
-      dataContextValue?.setDataState('stale')
-    }
-    setMode((prev) => (prev === 'visual' ? 'insert' : 'visual'))
+  const handleCancel = () => {
+    setMode('visual')
+    setTodo(todoItem.todo)
+  }
+
+  const handleInsert = () => setMode('insert')
+
+  const handleSubmit = async () => {
+    await todoApi.updateTodo(
+      todoItem.id,
+      todo,
+      checkboxRef.current?.checked ?? todoItem.isCompleted,
+    )
+    dataContextValue?.setDataState('stale')
+    setMode('visual')
   }
 
   const field =
@@ -54,12 +55,48 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
       <input type="text" value={todo} onChange={handleInput} />
     )
 
-  const primaryButtonText = mode === 'insert' ? '완료' : '수정'
+  const submitButton = (
+    <Button
+      className={cx('button', 'complete')}
+      data-testid={'submit-button'}
+      onClick={handleSubmit}
+    >
+      완료
+    </Button>
+  )
 
-  const secondaryButtonText = mode === 'insert' ? '취소' : '삭제'
+  const insertButton = (
+    <Button
+      className={cx('button', 'modify')}
+      data-testid={'modify-button'}
+      onClick={handleInsert}
+    >
+      수정
+    </Button>
+  )
+
+  const cancelButton = (
+    <Button
+      className={cx('button', 'delete')}
+      data-testid={'cancel-button'}
+      onClick={handleCancel}
+    >
+      취소
+    </Button>
+  )
+
+  const deleteButton = (
+    <Button
+      className={cx('button', 'delete')}
+      data-testid={'delete-button'}
+      onClick={handleDelete}
+    >
+      삭제
+    </Button>
+  )
 
   return (
-    <li className={cx('todo')}>
+    <li className={cx('todo', { active: mode === 'insert' })}>
       <div className={cx('contentWrapper')}>
         <Checkbox
           checked={todoItem.isCompleted}
@@ -69,20 +106,8 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
         {field}
       </div>
       <div className={cx('buttonWrapper')}>
-        <Button
-          className={cx('button', 'modify')}
-          data-testid={mode === 'insert' ? 'submit-button' : 'modify-button'}
-          onClick={handleMode}
-        >
-          {primaryButtonText}
-        </Button>
-        <Button
-          className={cx('button', 'delete')}
-          data-testid={mode === 'insert' ? 'cancel-button' : 'delete-button'}
-          onClick={handleDelete}
-        >
-          {secondaryButtonText}
-        </Button>
+        {mode === 'insert' ? submitButton : insertButton}
+        {mode === 'insert' ? cancelButton : deleteButton}
       </div>
     </li>
   )
