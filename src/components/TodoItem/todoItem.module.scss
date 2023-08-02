@@ -10,6 +10,10 @@
   border: 2px solid color.$GRAY4;
   border-radius: 4px;
 
+  &.active {
+    border-color: color.$BLUE5;
+  }
+
   & .contentWrapper {
     display: flex;
     flex-grow: 1;
@@ -36,6 +40,8 @@
       font-weight: 500;
       color: color.$BLACK;
       text-decoration: underline;
+      text-decoration-color: color.$BLUE4;
+      text-underline-offset: 2px;
       white-space: nowrap;
     }
   }
@@ -59,6 +65,11 @@
 
       &.modify {
         background-color: color.$YELLOW3;
+      }
+
+      &.complete {
+        color: color.$WHITE;
+        background-color: color.$BLUE4;
       }
     }
   }
