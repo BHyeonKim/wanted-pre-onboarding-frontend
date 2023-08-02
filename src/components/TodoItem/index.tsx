@@ -2,38 +2,51 @@ import classNames from 'classnames/bind'
 import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'
 import { DataContext } from 'components/Context'
-import { ChangeEvent, PropsWithChildren, useContext, useState } from 'react'
-import todo from 'services/todo'
+import { ChangeEvent, useContext, useRef, useState } from 'react'
+import todoApi from 'services/todo'
 import { TodoObject } from 'types/todo'
 
 import styles from './todoItem.module.scss'
 
-type TodoItemProps = PropsWithChildren<TodoObject>
-
 type Mode = 'visual' | 'insert'
+
+interface TodoItemProps {
+  todoItem: TodoObject
+}
 
 const cx = classNames.bind(styles)
 
-const TodoItem = ({ ...todoProps }: TodoItemProps) => {
-  const [todoObject, setTodo] = useState(todoProps)
+const TodoItem = ({ todoItem }: TodoItemProps) => {
+  const [todo, setTodo] = useState(todoItem.todo)
   const [mode, setMode] = useState<Mode>('visual')
+  const checkboxRef = useRef<HTMLInputElement>(null)
   const dataContextValue = useContext(DataContext)
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) =>
-    setTodo((prev) => ({ ...prev, todo: e.currentTarget.value }))
-
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setTodo(e.currentTarget.value)
+  }
   const handleDelete = async () => {
-    await todo.deleteTodo(todoObject.id)
+    await todoApi.deleteTodo(todoItem.id)
     dataContextValue?.setDataState('stale')
   }
 
-  const handleMode = () => setMode((prev) => (prev === 'visual' ? 'insert' : 'visual'))
+  const handleMode = async () => {
+    if (mode === 'insert') {
+      await todoApi.updateTodo(
+        todoItem.id,
+        todo,
+        checkboxRef.current?.checked ?? todoItem.isCompleted,
+      )
+      dataContextValue?.setDataState('stale')
+    }
+    setMode((prev) => (prev === 'visual' ? 'insert' : 'visual'))
+  }
 
   const field =
     mode === 'visual' ? (
-      <p>{todoObject.todo}</p>
+      <p>{todo}</p>
     ) : (
-      <input type="text" value={todoObject.todo} onChange={handleInput} />
+      <input type="text" value={todo} onChange={handleInput} />
     )
 
   const buttonText = mode === 'insert' ? '완료' : '수정'
@@ -41,7 +54,11 @@ const TodoItem = ({ ...todoProps }: TodoItemProps) => {
   return (
     <li className={cx('todo')}>
       <div className={cx('contentWrapper')}>
-        <Checkbox />
+        <Checkbox
+          checked={todoItem.isCompleted}
+          disabled={mode === 'visual'}
+          ref={checkboxRef}
+        />
         {field}
       </div>
       <div className={cx('buttonWrapper')}>

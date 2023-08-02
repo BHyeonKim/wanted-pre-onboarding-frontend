@@ -15,7 +15,7 @@ const TodoList = ({ todos }: TodoListProps) => {
     <ul className={cx('todoList')}>
       {todos?.map((todo, index) => {
         const key = `${index}-${todo.id}`
-        return <TodoItem key={key} {...todo} />
+        return <TodoItem key={key} todoItem={todo} />
       })}
     </ul>
   )
