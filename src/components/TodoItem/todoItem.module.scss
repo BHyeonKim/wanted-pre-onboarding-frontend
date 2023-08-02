@@ -71,6 +71,10 @@
         color: color.$WHITE;
         background-color: color.$BLUE4;
       }
+
+      &:disabled {
+        background-color: color.$GRAY4;
+      }
     }
   }
 }

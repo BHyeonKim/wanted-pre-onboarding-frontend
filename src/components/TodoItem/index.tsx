@@ -59,6 +59,7 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
     <Button
       className={cx('button', 'complete')}
       data-testid={'submit-button'}
+      disabled={!todo}
       onClick={handleSubmit}
     >
       완료
