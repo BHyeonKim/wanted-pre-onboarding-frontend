@@ -26,6 +26,11 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
     setTodo(e.currentTarget.value)
   }
   const handleDelete = async () => {
+    if (mode === 'insert') {
+      setMode('visual')
+      setTodo(todoItem.todo)
+      return
+    }
     await todoApi.deleteTodo(todoItem.id)
     dataContextValue?.setDataState('stale')
   }
@@ -49,7 +54,9 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
       <input type="text" value={todo} onChange={handleInput} />
     )
 
-  const buttonText = mode === 'insert' ? '완료' : '수정'
+  const primaryButtonText = mode === 'insert' ? '완료' : '수정'
+
+  const secondaryButtonText = mode === 'insert' ? '취소' : '삭제'
 
   return (
     <li className={cx('todo')}>
@@ -62,11 +69,19 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
         {field}
       </div>
       <div className={cx('buttonWrapper')}>
-        <Button className={cx('button', 'modify')} onClick={handleMode}>
-          {buttonText}
+        <Button
+          className={cx('button', 'modify')}
+          data-testid={mode === 'insert' ? 'submit-button' : 'modify-button'}
+          onClick={handleMode}
+        >
+          {primaryButtonText}
         </Button>
-        <Button className={cx('button', 'delete')} onClick={handleDelete}>
-          삭제
+        <Button
+          className={cx('button', 'delete')}
+          data-testid={mode === 'insert' ? 'cancel-button' : 'delete-button'}
+          onClick={handleDelete}
+        >
+          {secondaryButtonText}
         </Button>
       </div>
     </li>
