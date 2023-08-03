@@ -60,5 +60,6 @@ module.exports = {
       },
     ],
     'string-quotes': 'single',
+    'font-family-no-missing-generic-family-keyword': null,
   },
 }
