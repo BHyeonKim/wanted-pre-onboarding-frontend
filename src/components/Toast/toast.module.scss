@@ -1,0 +1,56 @@
+@use 'styles/constants/colors' as color;
+@use 'styles/constants/levels' as levels;
+
+.toast {
+  position: fixed;
+  left: 50%;
+  z-index: levels.$TOP;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 12px;
+  border-radius: 4px;
+  transform: translateX(-50%);
+  animation: slideIn 2s ease-in-out;
+
+  &.success {
+    color: color.$WHITE;
+    background-color: color.$BLUE6;
+  }
+
+  &.error {
+    color: color.$WHITE;
+    background-color: color.$RED6;
+  }
+
+  & .message {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    top: 4px;
+    transform: translateX(-50%) translateY(-110%);
+  }
+
+  25% {
+    top: 4px;
+    transform: translateX(-50%) translateY(0%);
+  }
+
+  75% {
+    top: 4px;
+    transform: translateX(-50%) translateY(0%);
+  }
+
+  100% {
+    top: 4px;
+    transform: translateX(-50%) translateY(-110%);
+  }
+}

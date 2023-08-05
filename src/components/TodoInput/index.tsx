@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind'
-import { DataContext } from 'components/Context'
+import { DataStateContext } from 'components/Context'
 import { ChangeEvent, FormEvent, useContext, useState } from 'react'
 import todo from 'services/todo'
 
@@ -9,7 +9,7 @@ const cx = classNames.bind(styles)
 
 const TodoInput = () => {
   const [input, setInput] = useState('')
-  const dataContextValue = useContext(DataContext)
+  const dataContextValue = useContext(DataStateContext)
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.currentTarget.value)

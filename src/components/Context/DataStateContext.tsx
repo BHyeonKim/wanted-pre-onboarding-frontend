@@ -13,16 +13,14 @@ type DataProviderValue = {
   setDataState: Dispatch<SetStateAction<DataState>>
 }
 
-export const DataContext = createContext<DataProviderValue | undefined>(undefined)
+export const DataStateContext = createContext<DataProviderValue | undefined>(undefined)
 
-const DataStateProvider = ({ children }: PropsWithChildren) => {
+export const DataStateProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState<DataState>('fresh')
 
   return (
-    <DataContext.Provider value={{ dataState: state, setDataState: setState }}>
+    <DataStateContext.Provider value={{ dataState: state, setDataState: setState }}>
       {children}
-    </DataContext.Provider>
+    </DataStateContext.Provider>
   )
 }
-
-export default DataStateProvider

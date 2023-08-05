@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'
-import { DataContext } from 'components/Context'
+import { DataStateContext } from 'components/Context'
 import { ChangeEvent, useContext, useRef, useState } from 'react'
 import todoApi from 'services/todo'
 import { TodoObject } from 'types/todo'
@@ -20,7 +20,7 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
   const [todo, setTodo] = useState(todoItem.todo)
   const [mode, setMode] = useState<Mode>('visual')
   const checkboxRef = useRef<HTMLInputElement>(null)
-  const dataContextValue = useContext(DataContext)
+  const dataContextValue = useContext(DataStateContext)
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setTodo(e.currentTarget.value)
