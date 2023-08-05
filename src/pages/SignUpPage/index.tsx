@@ -1,8 +1,10 @@
+import { AxiosError } from 'axios'
 import classNames from 'classnames/bind'
 import Button from 'components/Button'
+import { ApiErrorContext } from 'components/Context/ApiErrorContext'
 import Input from 'components/Input'
 import useInput from 'hooks/useInput'
-import { FormEvent } from 'react'
+import { FormEvent, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import todo from 'services/todo'
 
@@ -14,12 +16,22 @@ const SignUpPage = () => {
   const navigate = useNavigate()
   const [emailState, emailChangeHandler, emailBlurHandler] = useInput('email')
   const [passwordState, passwordChangeHandler, passwordBlurHandler] = useInput('password')
+  const errorContext = useContext(ApiErrorContext)
 
   const handleSignUp = async (e: FormEvent) => {
     e.preventDefault()
-    const { status } = await todo.signUp(emailState.value, passwordState.value)
-    if (status !== 201) return
-    navigate('/signin')
+    try {
+      const { status } = await todo.signUp(emailState.value, passwordState.value)
+      if (status !== 201) return
+      navigate('/signin')
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (errorContext.setError) {
+          errorContext.setError(error)
+        }
+      }
+      console.error(error)
+    }
   }
 
   const disabled = !emailState.valid || !passwordState.valid
