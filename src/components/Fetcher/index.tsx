@@ -1,4 +1,4 @@
-import { DataContext } from 'components/Context'
+import { DataStateContext } from 'components/Context'
 import type { TodoListProps } from 'components/TodoList'
 import {
   cloneElement,
@@ -17,7 +17,7 @@ interface FetcherProps {
 
 const Fetcher = ({ children }: FetcherProps) => {
   const [todoData, setTodoData] = useState<TodoObject[]>()
-  const dataContextValue = useContext(DataContext)
+  const dataContextValue = useContext(DataStateContext)
 
   const fetchTodos = useCallback(async () => {
     const { data } = await todo.getTodos()
