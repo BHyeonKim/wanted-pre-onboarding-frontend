@@ -37,3 +37,15 @@
     }
   }
 }
+
+@media screen and (width <= 425px) {
+  .inputWrapper {
+    width: 360px;
+  }
+}
+
+@media screen and (width <= 375px) {
+  .inputWrapper {
+    width: 320px;
+  }
+}
