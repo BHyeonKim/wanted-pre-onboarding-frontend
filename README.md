@@ -1,46 +1,99 @@
-# Getting Started with Create React App
+# TODO
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##### 만든 사람
 
-## Available Scripts
+김보현
 
-In the project directory, you can run:
+##### 이미지
 
-### `npm start`
+### 프로젝트 실행 방법
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+npm install && npm start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 배포 링크
 
-### `npm test`
+https://comforting-elf-6f06c5.netlify.app/signin
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Dependencies
 
-### `npm run build`
+@testing-library/jest-dom: 5.17.0
+@testing-library/react: 13.4.0
+axios: 1.4.0
+classnames: 2.3.2
+react: 18.2.0
+react-dom: 18.2.0
+react-router-dom: 6.14.2
+react-scripts: 5.0.1
+web-vitals: 2.1.4
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Dev Dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+@babel/plugin-proposal-private-property-in-object: 7.21.11
+@craco/craco: 7.1.0
+@craco/types: 7.1.0
+@testing-library/dom: 9.3.1
+@testing-library/user-event: 14.4.3
+@types/jest: 27.5.2
+@types/node: 16.18.39
+@types/react: 18.2.17
+@types/react-dom: 18.2.7
+@typescript-eslint/eslint-plugin: 5.62.0
+@typescript-eslint/parser: 5.62.0
+craco-alias: 3.0.1
+eslint: 8.46.0
+eslint-config-prettier: 8.9.0
+eslint-plugin-import: 2.28.0
+eslint-plugin-jsx-a11y: 6.7.1
+eslint-plugin-prettier: 5.0.0
+eslint-plugin-react: 7.33.1
+eslint-plugin-react-hooks: 4.6.0
+eslint-plugin-react-refresh: 0.4.3
+eslint-plugin-simple-import-sort: 10.0.0
+prettier: 3.0.0
+sass: 1.64.1
+stylelint: 15.10.2
+stylelint-config-recess-order: 4.3.0
+stylelint-config-standard: 34.0.0
+stylelint-config-standard-scss: 10.0.0
+stylelint-declaration-strict-value: 1.9.2
+stylelint-scss: 5.0.1
+typescript: 5.1.6
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Project Structure
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+📦src
+┣ 📂assets
+┃ ┣ 📂fonts
+┃ ┣ 📂images
+┃ ┗ 📂svgs
+┣ 📂components
+┃ ┣ 📂Button
+┃ ┣ 📂Checkbox
+┃ ┣ 📂Context
+┃ ┣ 📂Fetcher
+┃ ┣ 📂Input
+┃ ┣ 📂NavigationButton
+┃ ┣ 📂Toast
+┃ ┣ 📂ToastContainer
+┃ ┣ 📂TodoInput
+┃ ┣ 📂TodoItem
+┃ ┣ 📂TodoList
+┃ ┗ 📂hoc
+┣ 📂hooks
+┣ 📂pages
+┃ ┣ 📂NotFound
+┃ ┣ 📂SignInPage
+┃ ┣ 📂SignUpPage
+┃ ┗ 📂TodoPage
+┣ 📂routes
+┣ 📂services
+┣ 📂styles
+┃ ┣ 📂base
+┃ ┣ 📂constants
+┣ 📂types
+┣ 📂utils
+┣ 📜App.tsx
+┣ 📜index.tsx
+┣ 📜react-app-env.d.ts
+┣ 📜reportWebVitals.ts
+┗ 📜setupTests.ts
