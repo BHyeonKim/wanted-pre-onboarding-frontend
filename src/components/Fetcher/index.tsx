@@ -2,6 +2,7 @@ import { DataStateContext } from 'components/Context'
 import type { TodoListProps } from 'components/TodoList'
 import {
   cloneElement,
+  FC,
   ReactElement,
   useCallback,
   useContext,
@@ -15,7 +16,7 @@ interface FetcherProps {
   children: ReactElement<TodoListProps>
 }
 
-const Fetcher = ({ children }: FetcherProps) => {
+const Fetcher: FC<FetcherProps> = ({ children }) => {
   const [todoData, setTodoData] = useState<TodoObject[]>()
   const dataContextValue = useContext(DataStateContext)
 

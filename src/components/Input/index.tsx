@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind'
-import { InputHTMLAttributes } from 'react'
+import { FC, InputHTMLAttributes } from 'react'
 
 import styles from './input.module.scss'
 
@@ -11,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   touched?: boolean
 }
 
-const Input = ({ inputFor, valid, touched, ...inputProps }: InputProps) => {
+const Input: FC<InputProps> = ({ inputFor, valid, touched, ...inputProps }) => {
   const pascalCase = inputFor.charAt(0).toUpperCase() + inputFor.slice(1).toLowerCase()
   const lowerCase = inputFor.toLowerCase()
 

@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind'
-import { HTMLAttributes } from 'react'
+import { FC, HTMLAttributes } from 'react'
 
 import styles from './toast.module.scss'
 
@@ -8,7 +8,7 @@ interface ToastProps extends HTMLAttributes<HTMLDivElement> {
 }
 const cx = classNames.bind(styles)
 
-const Toast = ({ message, ...props }: ToastProps) => {
+const Toast: FC<ToastProps> = ({ message, ...props }) => {
   return (
     <div className={cx('toast', 'error')} {...props}>
       <p className={cx('message')}>{message}</p>

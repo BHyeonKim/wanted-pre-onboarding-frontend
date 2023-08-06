@@ -1,14 +1,13 @@
 import classNames from 'classnames/bind'
-import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
+import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react'
 
 import styles from './button.module.scss'
 
 const cx = classNames.bind(styles)
 
-const Button = ({
-  children,
-  ...buttonProps
-}: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>) => {
+export type ButtonProps = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>
+
+const Button: FC<ButtonProps> = ({ children, ...buttonProps }) => {
   return (
     <button className={cx('button')} {...buttonProps}>
       {children}

@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'
 import { DataStateContext } from 'components/Context'
-import { ChangeEvent, useContext, useState } from 'react'
+import { ChangeEvent, FC, useContext, useState } from 'react'
 import todoApi from 'services/todo'
 import { TodoObject } from 'types/todo'
 
@@ -16,7 +16,7 @@ interface TodoItemProps {
 
 const cx = classNames.bind(styles)
 
-const TodoItem = ({ todoItem }: TodoItemProps) => {
+const TodoItem: FC<TodoItemProps> = ({ todoItem }) => {
   const [todo, setTodo] = useState(todoItem.todo)
   const [mode, setMode] = useState<Mode>('visual')
   const [isChecked, setIsChecked] = useState(todoItem.isCompleted)
