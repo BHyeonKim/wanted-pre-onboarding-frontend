@@ -78,3 +78,15 @@
     }
   }
 }
+
+@media screen and (width <= 425px) {
+  .todo {
+    width: 360px;
+  }
+}
+
+@media screen and (width <= 375px) {
+  .todo {
+    width: 320px;
+  }
+}
