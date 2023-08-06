@@ -40,7 +40,7 @@ const TodoItem: FC<TodoItemProps> = ({ todoItem }) => {
 
   const handleCheck = async (e: ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.currentTarget.checked)
-    await todoApi.updateTodo(todoItem.id, todo, isChecked)
+    await todoApi.updateTodo(todoItem.id, todo, e.currentTarget.checked)
     dataContextValue?.setDataState('stale')
   }
 
@@ -101,7 +101,7 @@ const TodoItem: FC<TodoItemProps> = ({ todoItem }) => {
   return (
     <li className={cx('todo', { active: mode === 'insert' })}>
       <div className={cx('contentWrapper')}>
-        <Checkbox checked={todoItem.isCompleted} onChange={handleCheck} />
+        <Checkbox checked={isChecked} onChange={handleCheck} />
         {field}
       </div>
       <div className={cx('buttonWrapper')}>

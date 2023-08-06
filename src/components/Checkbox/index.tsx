@@ -14,7 +14,7 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 const Checkbox: FC<CheckboxProps> = ({ checked, onChange, ...inputProps }) => {
   return (
     <label className={cx('checkbox')}>
-      <input type="checkbox" onChange={onChange} {...inputProps} />
+      <input checked={checked} type="checkbox" onChange={onChange} {...inputProps} />
       {checked && <CheckIcon className={cx('icon')} />}
     </label>
   )
