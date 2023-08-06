@@ -52,7 +52,7 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
     mode === 'visual' ? (
       <p>{todo}</p>
     ) : (
-      <input type="text" value={todo} onChange={handleInput} />
+      <input data-testid="modify-input" type="text" value={todo} onChange={handleInput} />
     )
 
   const submitButton = (

@@ -64,7 +64,7 @@ const SigninPage = () => {
         <Button data-testid="signin-button" disabled={disabled} type="submit">
           Sign in
         </Button>
-        <NavigationButton data-testid="signup-button" to={'/signup'} type="button">
+        <NavigationButton to={'/signup'} type="button">
           Sign up
         </NavigationButton>
       </form>

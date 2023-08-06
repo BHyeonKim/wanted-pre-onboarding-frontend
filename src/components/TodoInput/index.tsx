@@ -25,8 +25,13 @@ const TodoInput = () => {
   return (
     <div className={cx('inputWrapper')}>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={input} onChange={handleInput} />
-        <button disabled={!input} type="submit">
+        <input
+          data-testid="new-todo-input"
+          type="text"
+          value={input}
+          onChange={handleInput}
+        />
+        <button data-testid="new-todo-add-button" disabled={!input} type="submit">
           제출
         </button>
       </form>
