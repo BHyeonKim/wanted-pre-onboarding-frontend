@@ -1,3 +1,4 @@
+import NotFoundPage from 'pages/NotFound'
 import SignInPage from 'pages/SignInPage'
 import SignUpPage from 'pages/SignUpPage'
 import TodoPage from 'pages/TodoPage'
@@ -16,6 +17,7 @@ const App = () => {
       <Route element={<ProtectedRoute />}>
         <Route element={<TodoPage />} path="/todo" />
       </Route>
+      <Route element={<NotFoundPage />} path="*" />
     </Routes>
   )
 }
