@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'
 import { DataStateContext } from 'components/Context'
-import { ChangeEvent, useContext, useRef, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import todoApi from 'services/todo'
 import { TodoObject } from 'types/todo'
 
@@ -19,7 +19,7 @@ const cx = classNames.bind(styles)
 const TodoItem = ({ todoItem }: TodoItemProps) => {
   const [todo, setTodo] = useState(todoItem.todo)
   const [mode, setMode] = useState<Mode>('visual')
-  const checkboxRef = useRef<HTMLInputElement>(null)
+  const [isChecked, setIsChecked] = useState(todoItem.isCompleted)
   const dataContextValue = useContext(DataStateContext)
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,12 +38,14 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
 
   const handleInsert = () => setMode('insert')
 
+  const handleCheck = async (e: ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.currentTarget.checked)
+    await todoApi.updateTodo(todoItem.id, todo, isChecked)
+    dataContextValue?.setDataState('stale')
+  }
+
   const handleSubmit = async () => {
-    await todoApi.updateTodo(
-      todoItem.id,
-      todo,
-      checkboxRef.current?.checked ?? todoItem.isCompleted,
-    )
+    await todoApi.updateTodo(todoItem.id, todo, isChecked)
     dataContextValue?.setDataState('stale')
     setMode('visual')
   }
@@ -99,11 +101,7 @@ const TodoItem = ({ todoItem }: TodoItemProps) => {
   return (
     <li className={cx('todo', { active: mode === 'insert' })}>
       <div className={cx('contentWrapper')}>
-        <Checkbox
-          checked={todoItem.isCompleted}
-          disabled={mode === 'visual'}
-          ref={checkboxRef}
-        />
+        <Checkbox checked={todoItem.isCompleted} onChange={handleCheck} />
         {field}
       </div>
       <div className={cx('buttonWrapper')}>
