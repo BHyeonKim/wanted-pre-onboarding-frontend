@@ -13,11 +13,22 @@ npm install && npm start
 
 https://comforting-elf-6f06c5.netlify.app/signin
 
-### 이미지
-#### Signin page
-![screencapture-comforting-elf-6f06c5-netlify-app-signin-2023-08-06-19_23_33](https://github.com/BHyeonKim/wanted-pre-onboarding-frontend/assets/46583212/70491a21-af4c-46ef-98b8-e51a81e7ecb9)
-#### Todo page
-![screencapture-comforting-elf-6f06c5-netlify-app-todo-2023-08-06-19_24_11](https://github.com/BHyeonKim/wanted-pre-onboarding-frontend/assets/46583212/24ff574a-9965-4515-9709-a9a03f69ec9b)
+### 동영상
+https://github.com/BHyeonKim/wanted-pre-onboarding-frontend/assets/46583212/6ded7b7b-2845-49f2-be1b-4812a8cdeb7c
+
+
+### 구현사항
+1. Input validation
+
+https://github.com/BHyeonKim/wanted-pre-onboarding-frontend/assets/46583212/9405b33a-0550-4136-8c50-c53aa65a5042
+
+2. Toast
+
+https://github.com/BHyeonKim/wanted-pre-onboarding-frontend/assets/46583212/ce946a00-79c4-4dea-a943-b7d8d7758b2a
+
+3. ...등을 비롯한 과제 구현사항을 구현
+
+
 
 
 ### Dependencies
