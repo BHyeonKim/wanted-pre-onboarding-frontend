@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getToken } from './localstorage'
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASEURL,
+  baseURL: 'https://www.pre-onboarding-selection-task.shop',
   headers: {
     'Content-Type': 'application/json',
   },
